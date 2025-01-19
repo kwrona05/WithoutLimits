@@ -4,6 +4,8 @@ from typing import List
 from database import engine, SessionLocal
 import models
 import schemas
+import random
+import datetime
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -28,14 +30,11 @@ def creat_place(place: schemas.PlaceCreate, db: Session = Depends(get_db)):
     db.refresh(db_place)
     return db_place
 
-@app.get("/health-data", response_model=List[schemas.HealthDataResponse])
-def get_health_data(db: Session = Depends(get_db)):
-    return db.query(models.HealthData).all()
+@app.get("/heartrate")
+def get_pseudo_hearrate():
+    return {
+        "timestamp": datetime.datetime.now().isoformat(),
+        "heart_rate": random.randint(60, 120),
+        "status": "normal" if random.randint(60, 120) <= 90 else "high"
+    }
 
-@app.post("/health-data", response_model=schemas.HealthDataResponse)
-def create_health_data(health_data: schemas.HealthDataCreate, db: Session = Depends(get_db)):
-    db_data = models.HealthData(**health_data.dict())
-    db.add(db_data)
-    db.commit()
-    db.refresh(db_data)
-    return db_data
