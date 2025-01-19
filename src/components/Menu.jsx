@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import SearchBar from "./menu-components/SearchBar";
 
 const Menu = () => {
