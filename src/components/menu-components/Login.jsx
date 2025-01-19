@@ -1,8 +1,10 @@
 import React, { useRef, useState } from "react";
 import Webcam from "react-webcam";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const LoginRegister = () => {
+  const navigate = useNavigate();
   const webcamRef = useRef(null);
   const [username, setUsername] = useState("");
   const [mode, setMode] = useState("login");
@@ -17,12 +19,12 @@ const LoginRegister = () => {
     const byteString = atob(dataURI.split(",")[1]);
     const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
     const arrayBuffer = new ArrayBuffer(byteString.length);
-    const intArray = new Uint8Array(ab);
+    const intArray = new Uint8Array(arrayBuffer);
 
     for (let i = 0; i < byteString.length; i++) {
-      ia[i] = byteString.charCodeAt(i);
+      intArray[i] = byteString.charCodeAt(i);
     }
-    return new Blob([ab], { type: mimeString });
+    return new Blob([arrayBuffer], { type: mimeString });
   };
 
   const handleSubmit = async () => {
@@ -35,6 +37,8 @@ const LoginRegister = () => {
       try {
         const response = await axios.post("/register", formData);
         setMessage(response.data.image);
+
+        navigate("/home");
       } catch (error) {
         setMessage(error.response?.data?.detail || "Registration Failed");
       }
@@ -42,6 +46,7 @@ const LoginRegister = () => {
       try {
         const response = await axios.post("/login", formData);
         setMessage(response.data.message);
+        navigate("/home");
       } catch (error) {
         setMessage(error.response?.data?.detail || "Login Failed");
       }
@@ -71,7 +76,3 @@ const LoginRegister = () => {
   );
 };
 export default LoginRegister;
-
-{
-  /*If successfully logged in, navigate to Home.jsx component */
-}
