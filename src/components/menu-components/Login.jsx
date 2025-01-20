@@ -35,11 +35,17 @@ const LoginRegister = () => {
     if (mode === "register") {
       formData.append("username", username);
       try {
-        const response = await axios.post("/register", formData);
+        console.log("something");
+        const response = await axios.post(
+          "http://localhost:8000/register",
+          formData,
+          { headers: { "Content-type": "multipart/form-data" } }
+        );
         setMessage(response.data.image);
 
         navigate("/home");
       } catch (error) {
+        console.error(error);
         setMessage(error.response?.data?.detail || "Registration Failed");
       }
     } else if (mode === "login") {
