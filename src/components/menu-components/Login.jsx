@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import Webcam from "react-webcam";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import styles from "./Login.module.scss";
 
 const LoginRegister = () => {
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ const LoginRegister = () => {
   };
 
   return (
-    <div className="login-form">
+    <div className={styles.loginForm}>
       <h1>{mode === "login" ? "Login" : "Register"}</h1>
       {mode === "register" && (
         <input
@@ -70,11 +71,29 @@ const LoginRegister = () => {
           onChange={(e) => setUsername(e.target.value)}
         />
       )}
-      <Webcam ref={webcamRef} screenshotFormat="image/jpeg" />
-      <button onClick={handleSubmit}>
+      <div className={styles.webcamContainer}>
+        <Webcam
+          ref={webcamRef}
+          screenshotFormat="image/jpeg"
+          onUserMediaError={(err) => {
+            console.error("Webcam error:", err);
+            setMessage("Webcam not found");
+          }}
+          videoConstraints={{
+            facingMode: "user",
+          }}
+        />
+      </div>
+      <button
+        onClick={handleSubmit}
+        className={`${styles.loginButton} ${styles.actionButton}`}
+      >
         {mode === "login" ? "Login" : "Register"}
       </button>
-      <button onClick={() => setMode(mode === "login" ? "register" : "login")}>
+      <button
+        className={`${styles.switchButton} ${styles.actionButton}`}
+        onClick={() => setMode(mode === "login" ? "register" : "login")}
+      >
         Switch to {mode === "login" ? "Login" : "Register"}
       </button>
       <p>{message}</p> {/*In the future add allerts*/}
