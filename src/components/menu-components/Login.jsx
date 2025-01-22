@@ -17,15 +17,11 @@ const LoginRegister = () => {
   };
 
   const dataURItoBlob = (dataURI) => {
-    const byteString = atob(dataURI.split(",")[1]);
-    const mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
-    const arrayBuffer = new ArrayBuffer(byteString.length);
-    const intArray = new Uint8Array(arrayBuffer);
-
-    for (let i = 0; i < byteString.length; i++) {
-      intArray[i] = byteString.charCodeAt(i);
-    }
-    return new Blob([arrayBuffer], { type: mimeString });
+    const [header, data] = dataURI.split(",");
+    const mimeString = header.match(/:(.*?);/)[1];
+    const byteString = atob(data);
+    const intArray = Uint8Array.from(byteString, (char) => char.charCodeAt(0));
+    return new Blob([intArray], { type: mimeString });
   };
 
   const handleSubmit = async () => {
@@ -51,7 +47,10 @@ const LoginRegister = () => {
       }
     } else if (mode === "login") {
       try {
-        const response = await axios.post("/login", formData);
+        const response = await axios.post(
+          "http://localhost:8000/login",
+          formData
+        );
         setMessage(response.data.message);
         navigate("/home");
       } catch (error) {
@@ -94,9 +93,9 @@ const LoginRegister = () => {
         className={`${styles.switchButton} ${styles.actionButton}`}
         onClick={() => setMode(mode === "login" ? "register" : "login")}
       >
-        Switch to {mode === "login" ? "Login" : "Register"}
+        Switch to {mode === "login" ? "Register" : "Login"}
       </button>
-      <p>{message}</p> {/*In the future add allerts*/}
+      {/* <p>{message}</p> In the future add allerts */}
     </div>
   );
 };
