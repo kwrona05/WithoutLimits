@@ -17,14 +17,14 @@ L.Icon.Default.mergeOptions({
 const Map = () => {
   const [places, setPlaces] = useState([]);
 
-  useEffect(() => {
-    fetch("/api/places")
-      .then((response) => response.json())
-      .then((data) => setPlaces(data))
-      .catch((error) => console.error("Cannot load place:", error));
-  }, []);
+  // useEffect(() => {
+  //   fetch("/api/places")
+  //     .then((response) => response.json())
+  //     .then((data) => setPlaces(data))
+  //     .catch((error) => console.error("Cannot load place:", error));
+  // }, []);
 
-  const position = { userPlace };
+  // const position = { userPlace };
 
   return (
     <MapContainer
@@ -33,11 +33,11 @@ const Map = () => {
       style={{ height: "100vh", width: "100%" }}
     >
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      {places.map((place, index) => (
+      {/* {places.map((place, index) => (
         <Marker key={index} position={[place.latitude, place.longitude]}>
           <Popup>{place.name}</Popup>
         </Marker>
-      ))}
+      ))} */}
     </MapContainer>
   );
 };
