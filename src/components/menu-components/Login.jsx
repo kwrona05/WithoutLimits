@@ -49,7 +49,8 @@ const LoginRegister = () => {
       try {
         const response = await axios.post(
           "http://localhost:8000/login",
-          formData
+          formData,
+          { headers: { "Content-type": "multipart/form-data" } }
         );
         setMessage(response.data.message);
         navigate("/home");
@@ -95,7 +96,7 @@ const LoginRegister = () => {
       >
         Switch to {mode === "login" ? "Register" : "Login"}
       </button>
-      {/* <p>{message}</p> In the future add allerts */}
+      <p>{message}</p> {/*In the future add allerts*/}
     </div>
   );
 };
