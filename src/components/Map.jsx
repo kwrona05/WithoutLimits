@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
-// import "../App.scss";
+import styles from "./Map.module.scss";
 
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
@@ -27,18 +27,20 @@ const Map = () => {
   // const position = { userPlace };
 
   return (
-    <MapContainer
-      center={[52.2297, 21.0122]}
-      zoom={13}
-      style={{ height: "100vh", width: "100%" }}
-    >
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      {/* {places.map((place, index) => (
+    <div className={styles.mapContainer}>
+      <MapContainer
+        center={[52.2297, 21.0122]}
+        zoom={13}
+        style={{ height: "300px", width: "100%" }}
+      >
+        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+        {/* {places.map((place, index) => (
         <Marker key={index} position={[place.latitude, place.longitude]}>
           <Popup>{place.name}</Popup>
         </Marker>
       ))} */}
-    </MapContainer>
+      </MapContainer>
+    </div>
   );
 };
 

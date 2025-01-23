@@ -1,0 +1,23 @@
+$primary-color: #2a9d8f;
+$secondary-color: #e9c46a;
+$alert-color: #e76f51;
+$text-color: #264653;
+$background-color: #f4f4f4;
+$font-family: "Arial", sans-serif;
+
+* {
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0 auto;
+}
+
+.mapContainer {
+    background-color: $background-color;
+    font-family: $font-family;
+    color: $text-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1440px;
+    height: auto;
+}
