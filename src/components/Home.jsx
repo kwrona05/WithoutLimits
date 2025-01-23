@@ -1,18 +1,17 @@
 import Menu from "./Menu";
 import Map from "./Map";
+import styles from "./Home.module.scss";
 
 const Home = () => {
   return (
-    <div className="container">
-      <div className="menu-container">
+    <div className={styles.container}>
+      <div className={styles.menuContainer}>
         <Menu />
       </div>
-      <div className="map-container">
+      <div className={styles.mapContainer}>
         <Map />
       </div>
     </div>
   );
-  //Mapa
-  //Bar do dodawania lub oznaczania jako nieaktualne nowych miejsc
 };
 export default Home;
