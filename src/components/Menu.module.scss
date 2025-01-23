@@ -1,0 +1,29 @@
+$primary-color: #e9c46a;
+$secondary-color: #f5da97;
+$alert-color: #e76f51;
+$text-color: #264653;
+$background-color: #f4f4f4;
+$font-family: "Arial", sans-serif;
+
+.menuContainer {
+    width: 1440px;
+    display: flex;
+    flex-direction: row;
+    background-color: $primary-color;
+    
+    .divBtn {
+        width: 100px;
+        background-color: $secondary-color;
+
+        &:hover {
+            border-bottom: 1px solid #f4f4f4;
+            cursor: pointer
+        }
+    }
+
+    .buttonContainer {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+    }
+}
