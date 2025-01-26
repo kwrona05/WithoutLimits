@@ -12,12 +12,6 @@ const Menu = () => {
         <div className={styles.divBtn} onClick={() => console.log("clicked")}>
           Charts
         </div>
-        <div
-          className={styles.searchBar}
-          onClick={() => console.log("clicked")}
-        >
-          Search place
-        </div>
         <div className={styles.divBtn} onClick={() => console.log("clicked")}>
           Your profile
         </div>

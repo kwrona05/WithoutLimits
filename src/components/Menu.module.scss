@@ -1,5 +1,9 @@
-$primary-color: #e9c46a;
-$secondary-color: #f5da97;
+@use "sass:color";
+
+$primary-color: #2a9d8f;
+$secondary-color: mix(white, $primary-color, 10%);
+$button-hover: mix(white, $primary-color, 30%);
+$bottom-border: linear-gradient(0deg, color.mix(white, $primary-color, 35%), color.mix(white, $primary-color, 30%));
 $alert-color: #e76f51;
 $text-color: #264653;
 $background-color: #f4f4f4;
@@ -10,14 +14,21 @@ $font-family: "Arial", sans-serif;
     display: flex;
     flex-direction: row;
     background-color: $primary-color;
+    align-items: center;
+    height: 100px;
     
     .divBtn {
-        width: 100px;
+        width: 300px;
         background-color: $secondary-color;
+        height: 100px;
+        align-items: center;
+        align-content: center;
+        text-align: center;
 
         &:hover {
-            border-bottom: 1px solid #f4f4f4;
-            cursor: pointer
+            background-color: $button-hover;
+            border-bottom: 50px solid $bottom-border;
+            cursor: pointer;
         }
     }
 
