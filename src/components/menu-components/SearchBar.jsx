@@ -1,8 +1,9 @@
+import styles from "./SearchBar.module.scss";
 const SearchBar = () => {
   return (
-    <div className="search-bar-container">
-      <input className="search-bar" placeholder="Enter the city" type="text" />
-      <button className="submit-search">Search</button>
+    <div className={styles.container}>
+      <input placeholder="Enter the city" type="text" />
+      <button type="submit">Search</button>
     </div>
   );
 };
