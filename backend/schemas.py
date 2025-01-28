@@ -1,24 +1,11 @@
 from pydantic import BaseModel
 from typing import List
-
-class PlaceBase(BaseModel):
-    name: str
-    latitude: float
-    longitude: float
-    accessibility_features: List[str]
-
-class PlaceCreate(PlaceBase):
-    pass
-
-class PlaceResponse(PlaceBase):
-    id: int
-
-    class Config:
-        orm_model = True
+from datetime import datetime
 
 class HealthDateBase(BaseModel):
     heart_rate: int
-    timestamp: str
+    status: str
+    timestamp: datetime
 
 class HealthDataCreate(HealthDateBase):
     pass
