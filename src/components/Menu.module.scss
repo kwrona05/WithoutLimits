@@ -2,7 +2,7 @@
 
 $primary-color: #2a9d8f;
 $secondary-color: mix(white, $primary-color, 10%);
-$button-hover: mix(white, $primary-color, 30%);
+$button-hover: color.mix(white, $primary-color, 30%);
 $bottom-border: linear-gradient(0deg, color.mix(white, $primary-color, 35%), color.mix(white, $primary-color, 30%));
 $alert-color: #e76f51;
 $text-color: #264653;
